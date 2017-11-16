@@ -162,6 +162,8 @@ function coverks_light_check() {
 
 	}
 
+}
+
 function coverks_door_unlock() {
 
 	if ( current_user_can( 'edit_posts' ) ) {
