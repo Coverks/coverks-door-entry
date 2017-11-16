@@ -169,8 +169,10 @@ function coverks_door_close( WP_REST_Request $request ) {
 
 function coverks_light_on( WP_REST_Request $request ) {
 
-	echo "light on";
-	print_r($request['id']);
+
+	$api = coverks_telldus_api();
+
+	print_r($api->devices());
 
 	return true;
 }
