@@ -26,16 +26,16 @@ jQuery( function ( $ ) {
 			},
 
 		} );
-		
-		
-		setTimeout(function(){ 
-		
+
+
+		setTimeout(function(){
+
 			$( $text ).html( 'Locking Doors...' );
-			
-			setTimeout(function(){ 
+
+			setTimeout(function(){
 				$( $text ).html( 'Open Doors' );
 			}, 1000);
-			
+
 		}, 3000);
 
 		return false;
@@ -45,7 +45,7 @@ jQuery( function ( $ ) {
 	$( '.coverks-door-unlock' ).click( function ( e ) {
 
 		e.preventDefault();
-		
+
 		var $text = this;
 		$( $text ).html( 'Opening...' );
 
@@ -64,11 +64,11 @@ jQuery( function ( $ ) {
 			},
 
 		} );
-		
-		setTimeout(function(){ 
-		
+
+		setTimeout(function(){
+
 			$( $text ).html( 'Open' );
-			
+
 		}, 3000);
 
 
@@ -79,7 +79,7 @@ jQuery( function ( $ ) {
 	$( '.coverks-door-lock' ).click( function ( e ) {
 
 		e.preventDefault();
-		
+
 		var $text = this;
 		$( $text ).html( 'Locking...' );
 
@@ -90,41 +90,6 @@ jQuery( function ( $ ) {
 			cache: false,
 			url: "https://app.coverks.no/wp-json/coverks/v1/close/" + coverksDoorID,
 			data: coverksDoorID,
-			beforeSend: function ( xhr ) {
-				xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
-			},
-			error: function () {
-				console.log( 'There was an error. Please try again.' );
-			},
-
-		} );
-		
-		setTimeout(function(){ 
-		
-			$( $text ).html( 'Lock' );
-			
-		}, 3000);
-
-		return false;
-
-	} );
-
-	$( '.coverks-light-on' ).click( function ( e ) {
-
-		e.preventDefault();
-
-		console.log("light on");
-
-		var $text = this;
-		$( $text ).html( 'Locking...' );
-
-		var coverksLightID = $( this ).data( 'coverks-light-id' );
-
-		$.ajax( {
-			type: "GET",
-			cache: false,
-			url: "https://app.coverks.no/wp-json/coverks/v1/lightin/" + coverksLightID,
-			data: coverksLightID,
 			beforeSend: function ( xhr ) {
 				xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
 			},
@@ -144,6 +109,41 @@ jQuery( function ( $ ) {
 
 	} );
 
+	$( '.coverks-light-on' ).click( function ( e ) {
+
+		e.preventDefault();
+
+		console.log("light on");
+
+		var $text = this;
+		$( $text ).html( 'Trying to light up your day...' );
+
+		var coverksLightID = $( this ).data( 'coverks-light-id' );
+
+		$.ajax( {
+			type: "GET",
+			cache: false,
+			url: "https://app.coverks.no/wp-json/coverks/v1/lighton/" + coverksLightID,
+			data: coverksLightID,
+			beforeSend: function ( xhr ) {
+				xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
+			},
+			error: function () {
+				console.log( 'There was an error. Please try again.' );
+			},
+
+		} );
+
+		setTimeout(function(){
+
+			$( $text ).html( 'On' );
+
+		}, 3000);
+
+		return false;
+
+	} );
+
 	$( '.coverks-light-off' ).click( function ( e ) {
 
 		e.preventDefault();
@@ -151,7 +151,7 @@ jQuery( function ( $ ) {
 		console.log("light off");
 
 		var $text = this;
-		$( $text ).html( 'Locking...' );
+		$( $text ).html( 'Prepare to go to the dark side...' );
 
 		var coverksLightID = $( this ).data( 'coverks-light-id' );
 
@@ -171,7 +171,7 @@ jQuery( function ( $ ) {
 
 		setTimeout(function(){
 
-			$( $text ).html( 'Lock' );
+			$( $text ).html( 'Off' );
 
 		}, 3000);
 
@@ -180,21 +180,21 @@ jQuery( function ( $ ) {
 	} );
 
 	function getLocation() {
-		
+
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(savePosition);
 		}
-		
+
 	}
-	
+
 	function savePosition( position ) {
-		
+
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
-		
+
 		$( 'a.coverks-door-open' ).attr( 'data-coverks-latitude', latitude );
 		$( 'a.coverks-door-open' ).attr( 'data-coverks-longitude', longitude );
-		
+
 	}
 
 } );
