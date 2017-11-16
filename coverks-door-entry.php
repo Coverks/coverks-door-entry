@@ -169,14 +169,16 @@ function coverks_door_close( WP_REST_Request $request ) {
 
 function coverks_light_on( WP_REST_Request $request ) {
 
-	print_r($request);
+	echo "light on";
+	print_r($request['id']);
 
 	return true;
 }
 
 function coverks_light_off( WP_REST_Request $request ) {
 
-	print_r($request);
+	echo "light off";
+	print_r($request['id']);
 
 	return true;
 }
