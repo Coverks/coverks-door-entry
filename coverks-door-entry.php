@@ -242,7 +242,7 @@ function coverks_door_unlock() {
 
 add_action( 'wp_enqueue_scripts', function() {
 
-	wp_enqueue_script( 'coverks-door-entry', plugins_url( '/script.js', __FILE__ ), array('jquery'), '1.0', true );
+	wp_enqueue_script( 'coverks-door-entry', plugins_url( '/script.js', __FILE__ ), array('jquery'), '1.0.1', true );
 
 	wp_localize_script( 'coverks-door-entry', 'wpApiSettings', array(
 		'root' => esc_url_raw( rest_url() ),
