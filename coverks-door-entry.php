@@ -280,10 +280,11 @@ function coverks_door_unlock() {
 
 	}
 
-	echo '<p>Outside now: Temperature <b>' . $outside_info['temperature'] . '&deg;C</b> and humidity <b>' . $outside_info['humidity'] . '%</b>';
 
 	echo '<p class="help">Need help? Ring <a href="tel:95281216">952 81 216</a></p>';
+	echo '<p></p>';
 
+	echo '<p class="help">Outside now: Temperature <b>' . $outside_info['temperature'] . '&deg;C</b> and humidity <b>' . $outside_info['humidity'] . '%</b>';
 }
 
 add_action( 'wp_enqueue_scripts', function() {
