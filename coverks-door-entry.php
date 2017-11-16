@@ -174,6 +174,21 @@ function coverks_light_on( WP_REST_Request $request ) {
 
 	$response = coverks_telldus_api_light_on($request['id']);
 
+	if ( function_exists( 'bp_activity_add' ) ) {
+
+		$bp = buddypress();
+		$user_id = get_current_user_id();
+		$userlink = bp_core_get_userlink( $user_id );
+
+		bp_activity_add( array(
+			'user_id'   => $user_id,
+			'action'    => sprintf( __( '%s has turned on a light.', 'buddypress' ), $userlink ),
+			'content'   => $request['id'],
+			'component' => 'coverks',
+			'type'      => 'change_light'
+		) );
+	}
+
 	return $response;
 }
 
@@ -183,6 +198,21 @@ function coverks_light_off( WP_REST_Request $request ) {
 	}
 
 	$response = coverks_telldus_api_light_off($request['id']);
+
+	if ( function_exists( 'bp_activity_add' ) ) {
+
+		$bp = buddypress();
+		$user_id = get_current_user_id();
+		$userlink = bp_core_get_userlink( $user_id );
+
+		bp_activity_add( array(
+			'user_id'   => $user_id,
+			'action'    => sprintf( __( '%s has turned off a light.', 'buddypress' ), $userlink ),
+			'content'   => $request['id'],
+			'component' => 'coverks',
+			'type'      => 'open_light'
+		) );
+	}
 
 	return $response;
 }
