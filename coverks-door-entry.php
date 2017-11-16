@@ -237,6 +237,8 @@ function coverks_door_unlock() {
 
 	if ( current_user_can( 'edit_posts' ) ) {
 
+		print_r(coverks_telldus_get_outside_info());
+
 		if ( current_user_can( 'manage_options' ) ) {
 
 			// print_r( get_user_meta( get_current_user_id(), '_coverks_user_coordinates', true ) );
