@@ -234,10 +234,12 @@ function coverks_light_check() {
 }
 
 function coverks_door_unlock() {
+	if ( false === ( $outside_info = get_transient( 'coverks_outside_info' ) ) ) {
+		$outside_info = coverks_telldus_get_outside_info();
+		set_transient( 'coverks_outside_info', $outside_info, 60 * 30 );
+	}
 
 	if ( current_user_can( 'edit_posts' ) ) {
-
-		print_r(coverks_telldus_get_outside_info());
 
 		if ( current_user_can( 'manage_options' ) ) {
 
@@ -265,7 +267,7 @@ function coverks_door_unlock() {
 		do_action( 'coverks_app_home_additional_buttons' );
 
 		echo '<h2>General info</h2>';
-		echo '<p>The wifi password for <i>Coverks</i> and <i>Coverks 5Ghz</i> of <b>Coverks2016</b></p>';
+		echo '<p>The wifi password for <i>Coverks</i> and <i>Coverks 5Ghz</i> is <b>Coverks2016</b></p>';
 
 
 		echo '<p>';
@@ -277,6 +279,8 @@ function coverks_door_unlock() {
 		echo '<a href="' . wp_login_url( home_url() ) . '" target="_self" class="button button-block button-primary no-ajax">Log In</a>';
 
 	}
+
+	echo '<p>Outside now: Temperature <b>' . $outside_info['temperature'] . '&deg;C</b> and humidity <b>' . $outside_info['humidity'] . '%</b>';
 
 	echo '<p class="help">Need help? Ring <a href="tel:95281216">952 81 216</a></p>';
 
