@@ -168,21 +168,23 @@ function coverks_door_close( WP_REST_Request $request ) {
 }
 
 function coverks_light_on( WP_REST_Request $request ) {
+	if ( ! $request['id'] ) {
+		return false;
+	}
 
+	$response = coverks_telldus_api_light_on($request['id']);
 
-	$api = coverks_telldus_api();
-
-	print_r($api->devices());
-
-	return true;
+	return $response;
 }
 
 function coverks_light_off( WP_REST_Request $request ) {
+	if ( ! $request['id'] ) {
+		return false;
+	}
 
-	echo "light off";
-	print_r($request['id']);
+	$response = coverks_telldus_api_light_off($request['id']);
 
-	return true;
+	return $response;
 }
 
 function coverks_light_check() {
@@ -191,8 +193,8 @@ function coverks_light_check() {
 
 		echo '<h2>Lights</h2>';
 		echo '<h3>Working Space</h3>';
-		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-on" data-coverks-light-id="178">On</a>';
-		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-off" data-coverks-light-id="178">Off</a>';
+		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-on" data-coverks-light-id="1794783">On</a>';
+		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-off" data-coverks-light-id="1794783">Off</a>';
 		echo '<hr />';
 
 
