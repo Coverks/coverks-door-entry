@@ -155,9 +155,10 @@ function coverks_light_check() {
 
 	if ( current_user_can( 'edit_posts' ) ) {
 
+		echo '<h2>Lights</h2>';
 		echo '<h3>Working Space</h3>';
-		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-on" data-coverks-door-id="2">Open</a>';
-		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-off" data-coverks-door-id="2">Lock</a>';
+		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-on" data-coverks-door-id="2">On</a>';
+		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-off" data-coverks-door-id="2">Off</a>';
 
 
 	}
