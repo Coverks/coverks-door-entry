@@ -51,6 +51,22 @@ function myplugin_register_routes() {
 		}
 	) );
 
+	register_rest_route( 'coverks/v1', 'lighton/(?P<id>\d+)', array(
+		'methods'  => WP_REST_Server::READABLE,
+		'callback' => 'coverks_light_on',
+		'permission_callback' => function () {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
+	register_rest_route( 'coverks/v1', 'lightoff/(?P<id>\d+)', array(
+		'methods'  => WP_REST_Server::READABLE,
+		'callback' => 'coverks_light_off',
+		'permission_callback' => function () {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+
 }
 
 function coverks_door_openclose( WP_REST_Request $request ) {
@@ -147,6 +163,20 @@ function coverks_door_close( WP_REST_Request $request ) {
 	// $user_name    = $current_user->display_name;
 	// $message      = '*' . $user_name . '* locked the door!';
 	// coverks_post_to_slack( $message ,'#door', 'DoorBot', ':door:' );
+
+	return true;
+}
+
+function coverks_light_on( WP_REST_Request $request ) {
+
+	print_r($request);
+
+	return true;
+}
+
+function coverks_light_off( WP_REST_Request $request ) {
+
+	print_r($request);
 
 	return true;
 }
