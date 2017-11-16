@@ -159,6 +159,8 @@ function coverks_light_check() {
 		echo '<h3>Working Space</h3>';
 		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-on" data-coverks-door-id="2">On</a>';
 		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-off" data-coverks-door-id="2">Off</a>';
+		echo '<hr />';
+
 
 
 	}
@@ -189,6 +191,8 @@ function coverks_door_unlock() {
 
 		echo '<p>This will open both doors. <b>Doors will automatically lock after 3 seconds.</b></p>';
 		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-door-open" data-coverks-latitude="0" data-coverks-longitude="0">Open Doors</a>';
+		echo '<hr />';
+
 
 		do_action( 'coverks_app_home_additional_buttons' );
 
