@@ -262,6 +262,10 @@ function coverks_door_unlock() {
 
 		do_action( 'coverks_app_home_additional_buttons' );
 
+		echo '<h2>General info</h2>';
+		echo '<p>The wifi password for <i>Coverks</i> and <i>Coverks 5Ghz</i> of <b>Coverks2016</b></p>';
+
+
 		echo '<p>';
 		echo '<a href="' . wp_logout_url( home_url() ) . '" target="_self" class="button button-block no-ajax">Log Out</a>';
 		echo '</p>';
