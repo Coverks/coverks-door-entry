@@ -281,7 +281,7 @@ function coverks_door_unlock() {
 	}
 
 
-	echo '<p class="help">Need help? Ring <a href="tel:95281216">952 81 216</a></p>';
+	echo '<p class="help">Need help? Call <a href="tel:95281216">952 81 216</a></p>';
 	echo '<p></p>';
 
 	echo '<p class="help">Outside now: Temperature <b>' . $outside_info['temperature'] . '&deg;C</b> and humidity <b>' . $outside_info['humidity'] . '%</b>';
