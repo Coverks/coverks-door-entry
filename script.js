@@ -113,6 +113,8 @@ jQuery( function ( $ ) {
 
 		e.preventDefault();
 
+		console.log("light on");
+
 		var $text = this;
 		$( $text ).html( 'Locking...' );
 
@@ -145,6 +147,8 @@ jQuery( function ( $ ) {
 	$( '.coverks-light-off' ).click( function ( e ) {
 
 		e.preventDefault();
+
+		console.log("light off");
 
 		var $text = this;
 		$( $text ).html( 'Locking...' );
