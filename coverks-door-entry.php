@@ -18,6 +18,7 @@ require_once( 'inc/slack.php' );
 add_action( 'init', function() {
 
 	add_action( 'coverks_app_home', 'coverks_door_unlock' );
+	add_action( 'coverks_app_home_additional_buttons', 'coverks_light_check' );
 
 } );
 
@@ -150,6 +151,17 @@ function coverks_door_close( WP_REST_Request $request ) {
 	return true;
 }
 
+function coverks_light_check() {
+
+	if ( current_user_can( 'edit_posts' ) ) {
+
+		echo '<h3>Working Space</h3>';
+		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-on" data-coverks-door-id="2">Open</a>';
+		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-light-off" data-coverks-door-id="2">Lock</a>';
+
+
+	}
+
 function coverks_door_unlock() {
 
 	if ( current_user_can( 'edit_posts' ) ) {
@@ -174,6 +186,8 @@ function coverks_door_unlock() {
 
 		echo '<p>This will open both doors. <b>Doors will automatically lock after 3 seconds.</b></p>';
 		echo '<a href="#" target="_self" class="button button-block button-primary no-ajax coverks-door-open" data-coverks-latitude="0" data-coverks-longitude="0">Open Doors</a>';
+
+		do_action( 'coverks_app_home_additional_buttons' );
 
 		echo '<p>';
 		echo '<a href="' . wp_logout_url( home_url() ) . '" target="_self" class="button button-block no-ajax">Log Out</a>';
@@ -200,7 +214,7 @@ add_action( 'wp_enqueue_scripts', function() {
 
 } );
 
-function getAddress( $latitude, $longitude ){
+function getAddress( $latitude, $longitude ) {
 
 	if ( ! empty( $latitude ) && !empty( $longitude ) ){
 
