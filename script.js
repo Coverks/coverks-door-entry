@@ -116,7 +116,7 @@ jQuery( function ( $ ) {
 		console.log("light on");
 
 		var $text = this;
-		$( $text ).html( 'Trying to light up your day...' );
+		$( $text ).html( 'Turning light on...' );
 
 		var coverksLightID = $( this ).data( 'coverks-light-id' );
 
@@ -151,7 +151,7 @@ jQuery( function ( $ ) {
 		console.log("light off");
 
 		var $text = this;
-		$( $text ).html( 'Prepare to go to the dark side...' );
+		$( $text ).html( 'Turning light off...' );
 
 		var coverksLightID = $( this ).data( 'coverks-light-id' );
 
