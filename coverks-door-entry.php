@@ -248,7 +248,7 @@ function coverks_door_unlock() {
 		set_transient( 'coverks_outside_info', $outside_info, 60 * 30 );
 	}
 
-	if ( false === ( $outside_info = get_transient( 'coverks_inside_info' ) ) ) {
+	if ( false === ( $inside_info = get_transient( 'coverks_inside_info' ) ) ) {
 		$inside_info = coverks_telldus_get_inside_info();
 		set_transient( 'coverks_inside_info', $inside_info, 60 * 30 );
 	}
