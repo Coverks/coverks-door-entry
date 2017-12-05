@@ -248,6 +248,11 @@ function coverks_door_unlock() {
 		set_transient( 'coverks_outside_info', $outside_info, 60 * 30 );
 	}
 
+	if ( false === ( $outside_info = get_transient( 'coverks_inside_info' ) ) ) {
+		$inside_info = coverks_telldus_get_inside_info();
+		set_transient( 'coverks_inside_info', $inside_info, 60 * 30 );
+	}
+
 	if ( current_user_can( 'edit_posts' ) ) {
 
 		if ( current_user_can( 'manage_options' ) ) {
@@ -293,6 +298,7 @@ function coverks_door_unlock() {
 	echo '<p class="help">Need help? Call <a href="tel:95281216">952 81 216</a></p>';
 	echo '<p></p>';
 
+	echo '<p class="help">Inside now: Temperature <b>' . $inside_info['temperature'] . '&deg;C</b> and humidity <b>' . $inside_info['humidity'] . '%</b>';
 	echo '<p class="help">Outside now: Temperature <b>' . $outside_info['temperature'] . '&deg;C</b> and humidity <b>' . $outside_info['humidity'] . '%</b>';
 }
 
