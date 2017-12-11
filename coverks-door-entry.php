@@ -69,35 +69,6 @@ function myplugin_register_routes() {
 
 }
 
-function time_elapsed_string($datetime, $full = false) {
-	$now = new DateTime;
-	$ago = new DateTime($datetime);
-	$diff = $now->diff($ago);
-
-	$diff->w = floor($diff->d / 7);
-	$diff->d -= $diff->w * 7;
-
-	$string = array(
-		'y' => 'year',
-		'm' => 'month',
-		'w' => 'week',
-		'd' => 'day',
-		'h' => 'hour',
-		'i' => 'minute',
-		's' => 'second',
-	);
-	foreach ($string as $k => &$v) {
-		if ($diff->$k) {
-			$v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-		} else {
-			unset($string[$k]);
-		}
-	}
-
-	if (!$full) $string = array_slice($string, 0, 1);
-	return $string ? implode(', ', $string) . ' ago' : 'just now';
-}
-
 function coverks_door_openclose( WP_REST_Request $request ) {
 
 	$current_user = wp_get_current_user();
@@ -327,8 +298,8 @@ function coverks_door_unlock() {
 	echo '<p class="help">Need help? Call <a href="tel:95281216">952 81 216</a></p>';
 	echo '<p></p>';
 
-	echo '<p class="help">Inside ' . time_elapsed_string($inside_info['updated']) . ': Temperature <b>' . $inside_info['temperature'] . '&deg;C</b> and humidity <b>' . $inside_info['humidity'] . '%</b>';
-	echo '<p class="help">Outside ' . time_elapsed_string($outside_info['updated']) . ': Temperature <b>' . $outside_info['temperature'] . '&deg;C</b> and humidity <b>' . $outside_info['humidity'] . '%</b>';
+	echo '<p class="help">Inside: Temperature <b>' . $inside_info['temperature'] . '&deg;C</b> and humidity <b>' . $inside_info['humidity'] . '%</b>';
+	echo '<p class="help">Outside: Temperature <b>' . $outside_info['temperature'] . '&deg;C</b> and humidity <b>' . $outside_info['humidity'] . '%</b>';
 }
 
 add_action( 'wp_enqueue_scripts', function() {
